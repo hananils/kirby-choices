@@ -1,0 +1,12 @@
+{
+    "name": "hananils/kirby-choices-methods",
+    "description": "Kirby 3 plugin to get selected choices from any field that provides options.",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hana+nils · Büro für Gestaltung",
+            "email": "buero@hananils.de"
+        }
+    ]
+}
