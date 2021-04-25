@@ -34,7 +34,6 @@ Kirby::plugin('hananils/choices-methods', [
             // Get choices
             $choices = [];
             foreach ($field->split() as $key) {
-                // dump($options[$key]);
                 if (isset($options[$key])) {
                     $choices[] = $options[$key];
                 } else {
@@ -126,6 +125,6 @@ Kirby::plugin('hananils/choices-methods', [
             $field->value = A::average($field->value, $decimals);
 
             return $field;
-        },
-    ],
+        }
+    ]
 ]);
