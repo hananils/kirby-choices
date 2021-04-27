@@ -49,6 +49,9 @@ Kirby::plugin('hananils/choices-methods', [
 
             return $field;
         },
+        'count' => function ($field) {
+            return count($field->value);
+        },
         'join' => function ($field, $separator = ', ') {
             if (!is_array($field->value)) {
                 return $field;
