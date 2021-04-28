@@ -50,6 +50,10 @@ Kirby::plugin('hananils/choices-methods', [
             return $field;
         },
         'count' => function ($field) {
+            if (!is_array($field->value)) {
+                return 0;
+            }
+
             return count($field->value);
         },
         'join' => function ($field, $separator = ', ') {
