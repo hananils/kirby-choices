@@ -43,7 +43,7 @@ Download and copy this repository to `/site/plugins/choices`.
 ### Git submodule
 
 ```
-git submodule add https://github.com/hananils/kirby-choices-methods.git site/plugins/choices
+git submodule add https://github.com/hananils/kirby-choices.git site/plugins/choices
 ```
 
 ### Composer
