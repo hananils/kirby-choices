@@ -1,6 +1,6 @@
 ![Kirby Choices Methods](.github/title.png)
 
-**Choices** is a plugin for [Kirby 3](https://getkirby.com/) that provides methods to manage field `options` in the frontend. For any field – like select, multiselect or checkboxlist – that offers `options` settings in the blueprint, this plugin will load and return the readable text values for the keys stored in the content file. It works with static options directly set in the blueprint as well as dynamic ones loaded via `query` or `api` settings.
+**Choices** is a plugin for [Kirby 3](https://getkirby.com) that provides methods to manage field `options` in the frontend. For any field – like select, multiselect or checkboxlist – that offers `options` settings in the blueprint, this plugin will load and return the readable text values for the keys stored in the content file. It works with static options directly set in the blueprint as well as dynamic ones loaded via `query` or `api` settings.
 
 ## Example
 
@@ -110,4 +110,5 @@ The average method will calculate the average of all selected value, useful when
 
 # License
 
-This plugin is provided freely under the [MIT license](LICENSE.md) by [hana+nils · Büro für Gestaltung](https://hananils.de). We create visual designs for digital and analog media.
+This plugin is provided freely under the [MIT license](LICENSE.md) by [hana+nils · Büro für Gestaltung](https://hananils.de).  
+We create visual designs for digital and analog media.

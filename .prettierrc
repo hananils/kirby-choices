@@ -7,5 +7,6 @@
     "bracketSameLine": false,
     "phpVersion": "7.4",
     "trailingCommaPHP": false,
-    "htmlWhitespaceSensitivity": "css"
+    "htmlWhitespaceSensitivity": "css",
+    "proseWrap": "never"
 }
