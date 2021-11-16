@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2020 hana+nils · Büro für Gestaltung
+Copyright (c) 2020–2021 hana+nils · Büro für Gestaltung
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

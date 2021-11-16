@@ -1,137 +1,84 @@
 <?php
 
-Kirby::plugin('hananils/choices-methods', [
-    'fieldMethods' => [
-        'toChoices' => function ($field) {
-            $page = $field->parent();
-            $key = $field->key();
-            $blueprint = $page->blueprint()->field($key);
+namespace Hananils;
 
-            if (!isset($blueprint['options'])) {
-                return $field;
-            }
+use Kirby;
+use Kirby\Toolkit\Collection;
+use Kirby\Toolkit\Str;
 
+class Choices extends Collection
+{
+    public function __construct($field, $all = false)
+    {
+        $page = $field->parent();
+        $key = $field->key();
+        $blueprint = $page->blueprint()->field($key);
+
+        $options = [];
+        $choices = [];
+
+        if (isset($blueprint['options'])) {
             // Get options
             if ($blueprint['options'] === 'query') {
-                $options = Kirby\Form\Options::query(
-                    $blueprint['query'],
-                    $page
-                );
+                $query = $blueprint['query'];
+                $options = Kirby\Form\Options::query($query, $page);
             } elseif ($blueprint['options'] === 'api') {
-                $options = Kirby\Form\Options::api($blueprint['api'], $page);
+                $api = $blueprint['api'];
+                $options = Kirby\Form\Options::api($api, $page);
             } else {
                 $options = $blueprint['options'];
             }
 
-            if (count($options) && $options[0]['value']) {
+            // Create associative array
+            if (isset($options[0]['value'])) {
                 $associated = [];
+
                 foreach ($options as $option) {
                     $associated[$option['value']] = $option['text'];
                 }
+
                 $options = $associated;
             }
 
             // Get choices
-            $choices = [];
-            foreach ($field->split() as $key) {
-                if (isset($options[$key])) {
-                    $choices[] = $options[$key];
-                } else {
-                    $choices[] = $key;
+            if ($all) {
+                $choices = $options;
+            } else {
+                // Filter by given field selection
+                foreach ($field->split() as $key) {
+                    if (isset($options[$key])) {
+                        $choices[$key] = $options[$key];
+                    } else {
+                        $choices[Str::slug($key)] = $key;
+                    }
                 }
             }
+        }
 
-            if ($choices) {
-                $field->value = $choices;
-            } else {
-                $field->value = [];
-            }
+        $this->caseSensitive = true;
+        $this->set($choices);
+    }
 
-            return $field;
-        },
-        'count' => function ($field) {
-            if (!is_array($field->value)) {
-                return 0;
-            }
+    public function join($separator = ', ')
+    {
+        return Kirby\Toolkit\A::join($data, $separator);
+    }
 
-            return count($field->value);
-        },
-        'join' => function ($field, $separator = ', ') {
-            if (!is_array($field->value)) {
-                return $field;
-            }
+    public function missing($required = [])
+    {
+        return A::missing($data, $required);
+    }
 
-            $field->value = Kirby\Toolkit\A::join($field->value, $separator);
+    public function average($decimals = 0)
+    {
+        return A::average($field->value, $decimals);
+    }
+}
 
-            return $field;
-        },
-        'get' => function ($field, $key, $default = null) {
-            if (!is_array($field->value)) {
-                return $field;
-            }
-
-            $field->value = A::get($field->value, $key, $default);
-
-            return $field;
-        },
-        'first' => function ($field) {
-            if (!is_array($field->value)) {
-                return $field;
-            }
-
-            $field->value = A::first($field->value);
-
-            return $field;
-        },
-        'last' => function ($field) {
-            if (!is_array($field->value)) {
-                return $field;
-            }
-
-            $field->value = A::last($field->value);
-
-            return $field;
-        },
-        'shuffle' => function ($field) {
-            if (!is_array($field->value)) {
-                return $field;
-            }
-
-            $field->value = A::shuffle($field->value);
-
-            return $field;
-        },
-        'sort' => function ($field, $column, $direction = 'desc', $method = 0) {
-            if (!is_array($field->value)) {
-                return $field;
-            }
-
-            $field->value = A::sort(
-                $field->value,
-                $column,
-                $direction,
-                $method
-            );
-
-            return $field;
-        },
-        'missing' => function ($field, $required = []) {
-            if (!is_array($field->value)) {
-                return $field;
-            }
-
-            $field->value = A::missing($field->value, $required);
-
-            return $field;
-        },
-        'average' => function ($field, $decimals = 0) {
-            if (!is_array($field->value)) {
-                return $field;
-            }
-
-            $field->value = A::average($field->value, $decimals);
-
-            return $field;
+Kirby::plugin('hananils/choices-methods', [
+    'fieldMethods' => [
+        'toChoices' => function ($field, $all = false) {
+            return new Choices($field, $all);
         }
     ]
 ]);

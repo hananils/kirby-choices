@@ -1,47 +1,113 @@
-# Kirby Choices Methods
+![Kirby Choices Methods](.github/title.png)
 
-Kirby 3 plugin to get selected choices from any field that provides options.
+**Choices** is a plugin for [Kirby 3](https://getkirby.com/) that provides methods to manage field `options` in the frontend. For any field – like select, multiselect or checkboxlist – that offers `options` settings in the blueprint, this plugin will load and return the readable text values for the keys stored in the content file. It works with static options directly set in the blueprint as well as dynamic ones loaded via `query` or `api` settings.
+
+## Example
+
+### Field
+
+```yaml
+fields:
+    fruits:
+        label: Fruits
+        type: select
+        options:
+            apple: Apple
+            pear: Pear
+            banana: Banana
+```
+
+### Content
+
+```yaml
+Title: Choices example
+
+----
+
+Fruits: apple
+```
+
+### Template
+
+```php
+// Will echo "Apple"
+<?= $page->fruits()->toChoices() ?>
+```
 
 ## Installation
 
 ### Download
 
-Download and copy this repository to `/site/plugins/choices-methods`.
+Download and copy this repository to `/site/plugins/choices`.
 
 ### Git submodule
 
 ```
-git submodule add https://github.com/hananils/kirby-choices-methods.git site/plugins/choices-methods
+git submodule add https://github.com/hananils/kirby-choices-methods.git site/plugins/choices
 ```
 
 ### Composer
 
 ```
-composer require hananils/kirby-choices-methods
+composer require hananils/kirby-choices
 ```
 
-## Field methods
+# Field methods
 
-Field methods can be called on any field offering options.
+## toChoices()
 
-### toChoices()
-
-Converts the field value to an array featuring the text values of all selected options.
+Converts the field value to a [Choices collection](#user-content-choices-collection) featuring the text values of the selected options:
 
 ```php
-$page->tags()->toChoices();
+$page->fruits()->toChoices();
 ```
 
-### Array methods
+If the method is passed an optional value of `true`, it will return text values for all options specified in the blueprint:
 
-In order to adjust the output the plugin offers additional [array methods](https://getkirby.com/docs/reference/tools/a) like `join()`, `get()`, `first()`, `last()`, `shuffle()`, `sort()`, `missing()` and `average()`.
+```php
+$page->fruits()->toChoices(true);
+```
 
-This plugin works nicely with [list methods](https://github.com/hananils/kirby-list-methods).
+# Choices collection
 
-## License
+The Choices collection can be used to loop over all given options and return their values. It offers all methods known to the [default Kirby collection](https://getkirby.com/docs/reference/objects/toolkit/collection) like `first()`, `last()`, `shuffle()`, `sort()` and the like. Additionally, it provides three methods to simplify content output:
 
-MIT
+## join($separator)
 
-## Credits
+The join method concatenates all field value by a given separator.
 
-[hana+nils · Büro für Gestaltung](https://hananils.de)
+-   **`$separator`:** optional separator, uses `, ` as default.
+
+```php
+// Will return: Apple, Pear
+$page
+    ->fruits()
+    ->toChoices()
+    ->join();
+```
+
+If you want to have more control on how to join values – e. g. to have the last item joined by `and` – have a look at the [List methods plugin](https://github.com/hananils/kirby-list-methods).
+
+## missing($required)
+
+The missing method compare the current field values with an array of required values and return the missing ones.
+
+-   **`$required`:** array of required values to be checked.
+
+```php
+// Will return: Banana
+$page
+    ->fruits()
+    ->toChoices()
+    ->missing(['Apple', 'Banana']);
+```
+
+## average($decimals)
+
+The average method will calculate the average of all selected value, useful when handling numeric values.
+
+-   **`$decimals`:** the number of decimals to return.
+
+# License
+
+This plugin is provided freely under the [MIT license](LICENSE.md) by [hana+nils · Büro für Gestaltung](https://hananils.de). We create visual designs for digital and analog media.

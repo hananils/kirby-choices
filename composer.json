@@ -1,8 +1,9 @@
 {
-    "name": "hananils/kirby-choices-methods",
-    "description": "Kirby 3 plugin to get selected choices from any field that provides options.",
+    "name": "hananils/kirby-choices",
+    "description": "Choices is a plugin for Kirby 3 that provides methods to manage field options in the frontend.",
     "type": "kirby-plugin",
     "license": "MIT",
+    "version": "2.0.0",
     "authors": [
         {
             "name": "hana+nils · Büro für Gestaltung",
