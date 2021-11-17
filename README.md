@@ -24,14 +24,27 @@ Title: Choices example
 
 ----
 
-Fruits: apple
+Fruits: apple, pear
 ```
 
 ### Template
 
 ```php
-// Will echo "Apple"
-<?= $page->fruits()->toChoices() ?>
+// Return selected fruits: "Apple Pear"
+foreach ($page->fruits()->toChoices() as $fruit) {
+    echo $fruit;
+}
+
+// Return selected fruits in flipped order: "Pear Apple"
+foreach (
+    $page
+        ->fruits()
+        ->toChoices()
+        ->flip()
+    as $fruit
+) {
+    echo $fruit;
+}
 ```
 
 ## Installation
