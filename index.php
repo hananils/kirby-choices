@@ -3,8 +3,9 @@
 namespace Hananils;
 
 use Kirby;
-use Kirby\Toolkit\Collection;
+use Kirby\Cms\Collection;
 use Kirby\Toolkit\Str;
+use Closure;
 
 class Choices extends Collection
 {
@@ -72,6 +73,15 @@ class Choices extends Collection
     public function average($decimals = 0)
     {
         return A::average($field->value, $decimals);
+    }
+
+    public function toArray(Closure $map = null): array
+    {
+        if ($map !== null) {
+            return array_map($map, $this->data);
+        }
+
+        return $this->data;
     }
 }
 
