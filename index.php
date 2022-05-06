@@ -62,12 +62,12 @@ class Choices extends Collection
 
     public function join($separator = ', ')
     {
-        return Kirby\Toolkit\A::join($data, $separator);
+        return Kirby\Toolkit\A::join($this->data, $separator);
     }
 
     public function missing($required = [])
     {
-        return A::missing($data, $required);
+        return A::missing($this->data, $required);
     }
 
     public function average($decimals = 0)
