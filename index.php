@@ -5,6 +5,8 @@ namespace Hananils;
 use Kirby\Cms\Collection;
 use Kirby\Toolkit\Str;
 use Kirby\Field\FieldOptions;
+use Kirby;
+use Closure;
 
 class Choices extends Collection
 {
