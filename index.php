@@ -2,30 +2,28 @@
 
 namespace Hananils;
 
-use Kirby;
 use Kirby\Cms\Collection;
 use Kirby\Toolkit\Str;
-use Closure;
+use Kirby\Field\FieldOptions;
 
 class Choices extends Collection
 {
-    public function __construct($field, $all = false)
+    public function __construct(Kirby\Cms\Field $field, $all = false)
     {
-        $page = $field->parent();
         $key = $field->key();
-        $blueprint = $page->blueprint()->field($key);
+        $blueprint = $field
+            ->parent()
+            ->blueprint()
+            ->field($key);
 
         $options = [];
         $choices = [];
 
         if (isset($blueprint['options'])) {
             // Get options
-            if ($blueprint['options'] === 'query') {
-                $query = $blueprint['query'];
-                $options = Kirby\Form\Options::query($query, $page);
-            } elseif ($blueprint['options'] === 'api') {
-                $api = $blueprint['api'];
-                $options = Kirby\Form\Options::api($api, $page);
+            if (isset($blueprint['options']['type'])) {
+                $fieldOptions = FieldOptions::factory($blueprint['options']);
+                $options = $fieldOptions->render($field->model());
             } else {
                 $options = $blueprint['options'];
             }
@@ -72,7 +70,7 @@ class Choices extends Collection
 
     public function average($decimals = 0)
     {
-        return A::average($field->value, $decimals);
+        return A::average($this->data, $decimals);
     }
 
     public function toArray(Closure $map = null): array
@@ -87,7 +85,7 @@ class Choices extends Collection
 
 Kirby::plugin('hananils/choices-methods', [
     'fieldMethods' => [
-        'toChoices' => function ($field, $all = false) {
+        'toChoices' => function (Kirby\Cms\Field $field, $all = false) {
             return new Choices($field, $all);
         }
     ]
