@@ -83,6 +83,11 @@ class Choices extends Collection
 
         return $this->data;
     }
+
+    public function toString(): string
+    {
+        return $this->join();
+    }
 }
 
 Kirby::plugin('hananils/choices-methods', [
