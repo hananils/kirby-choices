@@ -90,7 +90,7 @@ class Choices extends Collection
     }
 }
 
-Kirby::plugin('hananils/choices-methods', [
+Kirby::plugin('hananils/choices', [
     'fieldMethods' => [
         'toChoices' => function (Kirby\Cms\Field $field, $all = false) {
             return new Choices($field, $all);
