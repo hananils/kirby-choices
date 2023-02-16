@@ -3,7 +3,7 @@
     "description": "Choices is a plugin for Kirby 3 that provides methods to manage field options in the frontend.",
     "type": "kirby-plugin",
     "license": "MIT",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "authors": [
         {
             "name": "hana+nils · Büro für Gestaltung",
