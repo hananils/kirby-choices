@@ -60,17 +60,26 @@ class Choices extends Collection
         $this->set($choices);
     }
 
-    public function join($separator = ', ')
+    public function has($key): bool
+    {
+        if (empty($key) || !is_string($key)) {
+            return false;
+        }
+
+        return parent::has($key);
+    }
+
+    public function join($separator = ', '): string
     {
         return Kirby\Toolkit\A::join($this->data, $separator);
     }
 
-    public function missing($required = [])
+    public function missing($required = []): array
     {
         return A::missing($this->data, $required);
     }
 
-    public function average($decimals = 0)
+    public function average($decimals = 0): mixed
     {
         return A::average($this->data, $decimals);
     }
