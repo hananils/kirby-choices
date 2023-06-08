@@ -4,19 +4,30 @@ namespace Hananils;
 
 use Kirby\Cms\Collection;
 use Kirby\Toolkit\Str;
+use Kirby\Cms\Field;
 use Kirby\Field\FieldOptions;
 use Kirby;
 use Closure;
 
 class Choices extends Collection
 {
-    public function __construct(Kirby\Cms\Field $field, $all = false)
+    public function __construct(Field $field, $all = false, $context = null)
     {
         $key = $field->key();
-        $blueprint = $field
-            ->parent()
-            ->blueprint()
-            ->field($key);
+
+        // Field is nested, e. g. in a structure
+        if ($context) {
+            $contextField = $field
+                ->parent()
+                ->blueprint()
+                ->field($context);
+            $blueprint = $contextField['fields'][$key];
+        } else {
+            $blueprint = $field
+                ->parent()
+                ->blueprint()
+                ->field($key);
+        }
 
         $options = [];
         $choices = [];
@@ -97,12 +108,17 @@ class Choices extends Collection
     {
         return $this->join();
     }
+
+    public function __toString(): string
+    {
+        return $this->join();
+    }
 }
 
 Kirby::plugin('hananils/choices', [
     'fieldMethods' => [
-        'toChoices' => function (Kirby\Cms\Field $field, $all = false) {
-            return new Choices($field, $all);
+        'toChoices' => function (Field $field, $all = false, $context = null) {
+            return new Choices($field, $all, $context);
         }
     ]
 ]);
