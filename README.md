@@ -2,6 +2,9 @@
 
 **Choices** is a plugin for [Kirby 3](https://getkirby.com) that provides methods to manage field `options` in the frontend. For any field – like select, multiselect or checkboxlist – that offers `options` settings in the blueprint, this plugin will load and return the readable text values for the keys stored in the content file. It works with static options directly set in the blueprint as well as dynamic ones loaded via `query` or `api` settings.
 
+> [!NOTE]
+> Please check out the online documentation at [kirby.hananils.de/plugins/choices](https://kirby.hananils.de/plugins/choices) for further information.
+
 ## Example
 
 ### Field
