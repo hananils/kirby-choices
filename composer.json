@@ -1,19 +1,27 @@
 {
     "name": "hananils/kirby-choices",
-    "description": "Choices is a plugin for Kirby 3 that provides methods to manage field options in the frontend.",
-    "type": "kirby-plugin",
+    "description": "For any list field offering options in the blueprint, like select, multiselect or checkboxlist, Choices will load and return the readable text values for the keys stored in the content file. It works with static options directly set in the blueprint as well as dynamic ones loaded via query or api settings.",
     "license": "MIT",
-    "version": "3.0.2",
+    "type": "kirby-plugin",
+    "version": "4.0.0",
     "authors": [
         {
             "name": "hana+nils · Büro für Gestaltung",
             "email": "buero@hananils.de"
         }
     ],
+    "homepage": "https://kirby.hananils.de/plugins/choices",
     "require": {
-        "getkirby/composer-installer": "^1.1"
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.47",
+        "rector/rector": "^2.0"
     },
     "config": {
-        "optimize-autoloader": true
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
+        "sort-packages": true
     }
 }
