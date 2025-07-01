@@ -117,9 +117,9 @@ class Choices extends Collection implements \Stringable
      * get the value independently from that. We use it for `filter`.
      */
     public function getAttribute(
-        string|array|object $item,
-        string $attribute,
-        bool $split = false,
+        $item,
+        $attribute,
+        $split = false,
         $related = null
     ) {
         $value = $this->{'getAttributeFrom' . gettype($item)}(
