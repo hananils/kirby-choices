@@ -88,13 +88,11 @@ class Choices extends Collection implements \Stringable
                         $value = $text;
                         $text = $options[$text];
                     } elseif ($key = array_search($text, $options)) {
-                        // Find choice by text
+                        // Find choice by key
                         $value = $key;
                     } elseif (isset($options[$text])) {
-                        // Find choice by value
-
-                        $value = Str::slug($value);
-
+                        // Find choice by text
+                        $value = Str::slug($text);
                         $text = $options[$text];
                     } else {
                         // Fallback for unknown choices
