@@ -4,7 +4,7 @@ namespace Hananils;
 
 @include_once __DIR__ . '/vendor/autoload.php';
 
-use Hananils\Plus\LicenseManager;
+use Closure;
 use Kirby\Cms\App as Kirby;
 use Kirby\Cms\Collection;
 use Kirby\Toolkit\Str;
@@ -43,10 +43,16 @@ class Choices extends Collection implements \Stringable
 
         // Field is nested, e. g. in a structure
         if ($context) {
-            $contextField = $field->parent()->blueprint()->field($context);
+            $contextField = $field
+                ->parent()
+                ->blueprint()
+                ->field($context);
             $blueprint = $contextField['fields'][$key];
         } else {
-            $blueprint = $field->parent()->blueprint()->field($key);
+            $blueprint = $field
+                ->parent()
+                ->blueprint()
+                ->field($key);
         }
 
         $options = [];
@@ -235,14 +241,13 @@ class Choices extends Collection implements \Stringable
      * Joins all choices with a separator.
      *
      * @param $separator The separator to be used when joining choices.
+     * @param $as Either a Closure to convert the choices or `true` for values and `false|null` for texts.
      */
     public function join(
         string $separator = ', ',
-        bool $byValue = false
+        Closure|null|bool $as = null
     ): string {
-        $choices = $byValue === true ? $this->toValues() : $this->toTexts();
-
-        return A::join($choices, $separator);
+        return implode($separator, $this->toArray($as));
     }
 
     /**
@@ -262,7 +267,7 @@ class Choices extends Collection implements \Stringable
      */
     public function average(int $decimals = 0): self
     {
-        $this->data = A::average($this->data, $decimals);
+        $this->data = [A::average($this->data, $decimals)];
 
         return $this;
     }
@@ -370,6 +375,20 @@ class Choices extends Collection implements \Stringable
     public function kebabToCamel(): self
     {
         return $this->map('Kirby\Toolkit\Str::kebabToCamel');
+    }
+
+    /**
+     * Converts the object into an array. For compatibility reasons this
+     * allows for passing `true` and `false` to either receive an array of texts
+     * or values.
+     */
+    public function toArray(Closure|null|bool $map = null): array
+    {
+        return match ($map) {
+            null, false => $this->toTexts(),
+            true => $this->toValues(),
+            default => array_map($map, $this->toTexts())
+        };
     }
 
     /**
