@@ -94,13 +94,11 @@ class Choices extends Collection implements \Stringable
                         $value = $text;
                         $text = $options[$text];
                     } elseif ($key = array_search($text, $options)) {
-                        // Find choice by text
+                        // Find choice by key
                         $value = $key;
                     } elseif (isset($options[$text])) {
-                        // Find choice by value
-
-                        $value = Str::slug($value);
-
+                        // Find choice by text
+                        $value = Str::slug($text);
                         $text = $options[$text];
                     } else {
                         // Fallback for unknown choices
@@ -123,9 +121,9 @@ class Choices extends Collection implements \Stringable
      * get the value independently from that. We use it for `filter`.
      */
     public function getAttribute(
-        string|array|object $item,
-        string $attribute,
-        bool $split = false,
+        $item,
+        $attribute,
+        $split = false,
         $related = null
     ) {
         $value = $this->{'getAttributeFrom' . gettype($item)}(
