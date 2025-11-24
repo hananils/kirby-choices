@@ -43,16 +43,10 @@ class Choices extends Collection implements \Stringable
 
         // Field is nested, e. g. in a structure
         if ($context) {
-            $contextField = $field
-                ->parent()
-                ->blueprint()
-                ->field($context);
+            $contextField = $field->parent()->blueprint()->field($context);
             $blueprint = $contextField['fields'][$key];
         } else {
-            $blueprint = $field
-                ->parent()
-                ->blueprint()
-                ->field($key);
+            $blueprint = $field->parent()->blueprint()->field($key);
         }
 
         $options = [];
@@ -92,7 +86,9 @@ class Choices extends Collection implements \Stringable
                 foreach ($field->split() as $text) {
                     if ($blueprint['type'] === 'color') {
                         $value = $text;
-                        $text = $options[$text];
+                        $text = array_key_exists($text, $options)
+                            ? $options[$text]
+                            : $text;
                     } elseif ($key = array_search($text, $options)) {
                         // Find choice by key
                         $value = $key;
