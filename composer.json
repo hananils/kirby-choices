@@ -12,7 +12,8 @@
     ],
     "homepage": "https://kirby.hananils.de/plugins/choices",
     "require": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "getkirby/composer-installer": "^1.2"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.47",
@@ -20,8 +21,12 @@
     },
     "config": {
         "allow-plugins": {
-            "ergebnis/composer-normalize": true
+            "ergebnis/composer-normalize": true,
+            "getkirby/composer-installer": true
         },
         "sort-packages": true
+    },
+    "extra": {
+        "installer-name": "choices"
     }
 }
