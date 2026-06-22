@@ -82,8 +82,12 @@ class Choices extends Collection implements \Stringable
             if ($all) {
                 $choices = $options;
             } else {
+                $texts = str_starts_with($field->value(), '- ')
+                    ? $field->yaml()
+                    : $field->split();
+
                 // Filter by given selection
-                foreach ($field->split() as $text) {
+                foreach ($texts as $text) {
                     if ($blueprint['type'] === 'color') {
                         $value = $text;
                         $text = array_key_exists($text, $options)
