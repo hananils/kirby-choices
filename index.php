@@ -18,7 +18,7 @@ use Kirby\Toolkit\A;
 class Choices extends Collection implements \Stringable
 {
     /**
-     * Given a field with options, this method retrieves all choices made by the
+     * Given a field with options, this class retrieves all choices made by the
      * editors or – if the `all` parameter is set – of all options defined for
      * this field.
      *
@@ -211,7 +211,7 @@ class Choices extends Collection implements \Stringable
 
     /**
      * Checks if all of the given values or texts are present in the choices.
-     * This is an alias for `hasAll` with the additional option to pass single values as string.
+     * This is an alias for `hasAll` which also except as single value as string.
      *
      * @param $choices The values or texts to look up.
      */
