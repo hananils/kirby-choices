@@ -1,9 +1,9 @@
 {
     "name": "hananils/kirby-choices",
-    "description": "For any list field offering options in the blueprint, like select, multiselect or checkboxlist, Choices will load and return the readable text values for the keys stored in the content file. It works with static options directly set in the blueprint as well as dynamic ones loaded via query or api settings.",
+    "description": "Choices offers methods to resolve selections stored by select, multiselect or checkboxes fields back to their human-readable values.  It also gives access to the full list of options defined in the blueprint, either written statically or loaded via query or api settings.",
     "license": "MIT",
     "type": "kirby-plugin",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "authors": [
         {
             "name": "hana+nils · Büro für Gestaltung",
