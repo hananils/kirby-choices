@@ -3,7 +3,7 @@
     "description": "Choices offers methods to resolve selections stored by select, multiselect or checkboxes fields back to their human-readable values.  It also gives access to the full list of options defined in the blueprint, either written statically or loaded via query or api settings.",
     "license": "MIT",
     "type": "kirby-plugin",
-    "version": "4.0.1",
+    "version": "4.1.1",
     "authors": [
         {
             "name": "hana+nils · Büro für Gestaltung",
