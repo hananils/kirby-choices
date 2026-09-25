@@ -6,6 +6,20 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitae4a96fd9431e69ba25aba659bda082b
 {
+    public static $prefixLengthsPsr4 = array (
+        'K' =>
+        array (
+            'Kirby\\' => 6,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Kirby\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -13,6 +27,8 @@ class ComposerStaticInitae4a96fd9431e69ba25aba659bda082b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitae4a96fd9431e69ba25aba659bda082b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitae4a96fd9431e69ba25aba659bda082b::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitae4a96fd9431e69ba25aba659bda082b::$classMap;
 
         }, null, ClassLoader::class);
