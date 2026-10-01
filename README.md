@@ -8,7 +8,7 @@ Choices’ primary usecase is outputting selections and field options on the fro
 
 Choices is used as shared term for both selection and option lists.
 
-The plugin creates a collection of all choices and allows you to [evaluate](https://kirby.hananils.test/plugins/choices/boolean-methods), [manipulate](https://kirby.hananils.test/plugins/choices/choice-manipulation) and [convert](https://kirby.hananils.test/plugins/choices/conversion) them on the fly.
+The plugin creates a collection of all choices and allows you to [evaluate](https://kirby.hananils.de/plugins/choices/boolean-methods), [manipulate](https://kirby.hananils.de/plugins/choices/choice-manipulation) and [convert](https://kirby.hananils.de/plugins/choices/conversion) them on the fly.
 
 ### Field method
 
@@ -19,7 +19,7 @@ The plugin creates a collection of all choices and allows you to [evaluate](http
 - **context:**  *string*   
      The name of the parent, if the field is nested. Defaults to `null`.
  
-Given a field with options, this method retrieves all choices made by the editors or – if the `all` parameter is set – of all options defined for this field.
+Given a field with options, this class retrieves all choices made by the editors or – if the `all` parameter is set – of all options defined for this field.
 
 In case of nested fields, e. g. when used inside a structure field, the name of the parent field must be passed as context in order to retrieve the choices.
 
@@ -78,7 +78,7 @@ Fruits: apple, pear
 ```
 
 > [!TIP]
-> See the [manipulation guides](https://kirby.hananils.test/plugins/choices/choice-manipulation) to learn how to use Kirby’s string methods on all choices before output. There are also [methods to evaluate](https://kirby.hananils.test/plugins/choices/boolean-methods) the existence or non-existence of a choice and further [options to convert content to another type](https://kirby.hananils.test/plugins/choices/conversion) – for instance, switching between text and value output.
+> See the [manipulation guides](https://kirby.hananils.de/plugins/choices/choice-manipulation) to learn how to use Kirby’s string methods on all choices before output. There are also [methods to evaluate](https://kirby.hananils.de/plugins/choices/boolean-methods) the existence or non-existence of a choice and further [options to convert content to another type](https://kirby.hananils.de/plugins/choices/conversion) – for instance, switching between text and value output.
 
 ## Installation
 
