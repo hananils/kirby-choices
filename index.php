@@ -9,7 +9,7 @@ use Kirby\Cms\App as Kirby;
 use Kirby\Cms\Collection;
 use Kirby\Toolkit\Str;
 use Kirby\Content\Field;
-use Kirby\Field\FieldOptions;
+use Kirby\Form\FieldOptions;
 use Kirby\Toolkit\A;
 
 /**
