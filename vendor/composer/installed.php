@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'hananils/kirby-choices',
-        'pretty_version' => '4.1.1',
-        'version' => '4.1.1.0',
+        'pretty_version' => '5.0.0',
+        'version' => '5.0.0.0',
         'reference' => null,
         'type' => 'kirby-plugin',
         'install_path' => __DIR__ . '/../../',
@@ -20,8 +20,8 @@
             'dev_requirement' => false,
         ),
         'hananils/kirby-choices' => array(
-            'pretty_version' => '4.1.1',
-            'version' => '4.1.1.0',
+            'pretty_version' => '5.0.0',
+            'version' => '5.0.0.0',
             'reference' => null,
             'type' => 'kirby-plugin',
             'install_path' => __DIR__ . '/../../',
